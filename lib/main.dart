@@ -12,13 +12,9 @@ import 'providers/auth.dart';
 import 'screens/Authscreen/loading.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-
-
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); 
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
-
 
   runApp(
     MultiProvider(
@@ -27,13 +23,11 @@ void main() async {
       ],
       child: const MyApp(),
     ),
-
   );
 }
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -58,8 +52,5 @@ class _MyAppState extends State<MyApp> {
               ? Home()
               : const PreLogin()),
     );
-   
- 
-    
   }
 }
