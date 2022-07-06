@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:chat_application/constaintapi.dart';
+import 'package:chat_application/screens/prelogin.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/Authscreen/login_page.dart';
@@ -54,7 +55,7 @@ class _MyAppState extends State<MyApp> {
           ? const Loading()
           : (context.watch<AuthProvider>().isLoggedin
               ? Home()
-              : const AuthScreen()),
+              : const PreLogin()),
     );
   }
 }
