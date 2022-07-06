@@ -1,9 +1,9 @@
-
 import 'package:chat_application/global_vars.dart';
 import 'package:chat_application/providers/auth.dart';
 import 'package:chat_application/screens/AuthScreen/otp_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:lottie/lottie.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -42,61 +42,46 @@ class _AuthScreenState extends State<AuthScreen> {
         body: SingleChildScrollView(
           child: Column(children: <Widget>[
             Container(
-              height: MediaQuery.of(context).size.height / 2.5,
+              height: MediaQuery.of(context).size.height / 2,
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.all(44),
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'शीर्षक',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromRGBO(64, 101, 175, 1),
-                        fontSize: 22,
-                        fontFamily: 'Mukta'),
-                  ),
-                  Text(
-                    'खाता बनाने के लिए अपना विवरण दे',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromRGBO(64, 101, 175, 1),
-                        fontSize: 13,
-                        fontFamily: 'Mukta'),
-                  ),
-                ],
-              ),
-              decoration: const BoxDecoration(
-                color: Color.fromRGBO(82, 211, 255, 1),
-                // image: DecorationImage(
-                //   scale: 1,
-                //   image: AssetImage('assets/images/study1.png'),
-                //   alignment: Alignment.bottomCenter,
-                // ),
+              child: Lottie.asset(
+                'assets/animation/loginvd.json',
+                fit: BoxFit.fill,
               ),
             ),
-            const SizedBox(
-              height: 75,
-            ),
+            // const SizedBox(
+            //   height: 75,
+            // ),
+            // const Text(
+            //   'फ्री रजिस्ट्रेशन ',
+            //   style: TextStyle(
+            //       fontWeight: FontWeight.w700,
+            //       color: Color.fromRGBO(6, 7, 87, 1),
+            //       fontSize: 22,
+            //       fontFamily: 'Mukta'),
+            // ),
+            // const Text(
+            //   'खाता बनाने के लिए अपना विवरण दे',
+            //   style: TextStyle(
+            //       fontWeight: FontWeight.w400,
+            //       color: Color.fromRGBO(6, 7, 87, 1),
+            //       fontSize: 13,
+            //       fontFamily: 'Mukta'),
+            // ),
+            // const SizedBox(
+            //   height: 30,
+            // ),
+            const SizedBox(height: 20),
             const Text(
-              'फ्री रजिस्ट्रेशन ',
+              'SIGN IN WITH MOBILE NUMBER',
               style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: Color.fromRGBO(6, 7, 87, 1),
-                  fontSize: 22,
-                  fontFamily: 'Mukta'),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 10, 70, 104),
+              ),
             ),
-            const Text(
-              'खाता बनाने के लिए अपना विवरण दे',
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromRGBO(6, 7, 87, 1),
-                  fontSize: 13,
-                  fontFamily: 'Mukta'),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
+            const SizedBox(height: 25),
             Form(
               key: _formKey,
               child: Column(
@@ -131,19 +116,10 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  SizedBox(
-                    width: 296,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: bcolor, //background color of button
-                          //border width and color
-                          elevation: 3, //elevation of button
-                          shape: RoundedRectangleBorder(
-                              //to set border radius to button
-                              borderRadius: BorderRadius.circular(30)),
-                          padding: const EdgeInsets.all(
-                              20) //content padding inside button
-                          ),
+                  Container(
+                    height: 50.0,
+                    margin: EdgeInsets.all(10),
+                    child: RaisedButton(
                       onPressed: () {
                         var status = _formKey.currentState?.validate();
                         if (status != null && status) {
@@ -157,9 +133,63 @@ class _AuthScreenState extends State<AuthScreen> {
                           );
                         }
                       },
-                      child: const Text("ओ टी पी जनरेट करें"),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0)),
+                      padding: EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                            borderRadius: BorderRadius.circular(30.0)),
+                        child: Container(
+                          constraints: const BoxConstraints(
+                              maxWidth: 250.0, minHeight: 50.0),
+                          alignment: Alignment.center,
+                          child: const Text(
+                            "GENERATE OTP",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
+                  // SizedBox(
+                  //   width: 296,
+                  //   child: ElevatedButton(
+                  //     style: ElevatedButton.styleFrom(
+                  //         primary: bcolor, //background color of button
+                  //         //border width and color
+                  //         elevation: 3, //elevation of button
+                  //         shape: RoundedRectangleBorder(
+                  //             //to set border radius to button
+                  //             borderRadius: BorderRadius.circular(30)),
+                  //         padding: const EdgeInsets.all(
+                  //             20) //content padding inside button
+                  //         ),
+                  //     onPressed: () {
+                  //       var status = _formKey.currentState?.validate();
+                  //       if (status != null && status) {
+                  //         Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //             builder: (context) => OtpScreen(
+                  //               mobileController.text,
+                  //             ),
+                  //           ),
+                  //         );
+                  //       }
+                  //     },
+                  //     child: const Text("GENERATE OTP",
+                  //         style: TextStyle(
+                  //             color: Colors.black,
+                  //             fontSize: 20,
+                  //             fontWeight: FontWeight.bold)),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -194,10 +224,10 @@ class _AuthScreenState extends State<AuthScreen> {
             // const SizedBox(
             //   height: 20,
             // ),
-            TextButton(
-              child: const Text("लॉगिन के बिना प्रवेश "),
-              onPressed: () => context.read<AuthProvider>().guestLogin(),
-            ),
+            // TextButton(
+            //   child: const Text("लॉगिन के बिना प्रवेश "),
+            //   onPressed: () => context.read<AuthProvider>().guestLogin(),
+            // ),
           ]),
         ),
       ),

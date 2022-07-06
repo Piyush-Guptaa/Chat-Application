@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:provider/src/provider.dart';
+import 'package:lottie/lottie.dart';
 // import 'package:flutter_otp_timer/flutter_otp_timer.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _OtpScreenState extends State<OtpScreen>
     secondsRemaining = 30;
     enableResend = false;
     super.initState();
-    context.read<AuthProvider>().generateOtp(widget.phoneNumber);
+    // context.read<AuthProvider>().generateOtp(widget.phoneNumber);
     _controller = AnimationController(vsync: this);
   }
 
@@ -128,69 +129,30 @@ class _OtpScreenState extends State<OtpScreen>
               Container(
                 height: MediaQuery.of(context).size.height / 2.5,
                 width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.all(44),
-                child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
-                      'शीर्षक',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromRGBO(201, 22, 54, 1),
-                        fontSize: 22,
-                        fontFamily: 'Mukta',
-                      ),
-                    ),
-                    Text(
-                      'खाता बनाने के लिए अपना विवरण दे',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromRGBO(201, 22, 54, 1),
-                        fontSize: 13,
-                        fontFamily: 'Mukta',
-                      ),
-                    ),
-                  ],
-                ),
-                decoration: const BoxDecoration(
-                  color: Color.fromRGBO(240, 85, 113, 1),
-                  // image: DecorationImage(
-                  //   scale: 1,
-                  //   image: AssetImage('assets/images/study1.png'),
-                  //   alignment: Alignment.bottomCenter,
-                  // ),
+                padding: const EdgeInsets.all(40),
+                child: Lottie.asset(
+                  'assets/animation/otpvd.json',
+                  fit: BoxFit.fill,
                 ),
               ),
-              const SizedBox(height: 75),
+
               const Text(
-                'पुष्टि करें',
+                'ENTER YOUR 6 DIGIT VERIFICATION CODE',
                 style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: Color.fromRGBO(6, 7, 87, 1),
-                  fontSize: 22,
-                  fontFamily: 'Mukta',
-                ),
-              ),
-              const Text(
-                '6 अंकों का कोड दर्ज करें जो हमने आपको भेजा है इस पर:',
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromRGBO(6, 7, 87, 1),
-                  fontSize: 13,
-                  fontFamily: 'Mukta',
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 10, 70, 104),
                 ),
               ),
               Text(
                 "+91 ${widget.phoneNumber}",
                 style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Color.fromRGBO(6, 7, 87, 1),
                   fontSize: 16,
-                  decoration: TextDecoration.underline,
-                  fontFamily: 'Hind',
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 10, 70, 104),
                 ),
               ),
-              const SizedBox(height: 27),
+              const SizedBox(height: 24),
               OTPTextField(
                 length: 6,
                 width: MediaQuery.of(context).size.width,
@@ -221,24 +183,11 @@ class _OtpScreenState extends State<OtpScreen>
               //   },
               // ),
               //width of button
-              const SizedBox(height: 30),
-              SizedBox(
-                height: 52, //height of button
-                width: 296, //width of button
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: bcolor, //background color of button
-                      //border width and color
-                      elevation: 3, //elevation of button
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      padding: const EdgeInsets.all(20)),
-                  onFocusChange: (code) {
-                    ElevatedButton.styleFrom(
-                      primary: const Color.fromRGBO(121, 0, 135, 1),
-                    );
-                  },
+              const SizedBox(height: 25),
+              Container(
+                height: 50.0,
+                margin: EdgeInsets.all(10),
+                child: RaisedButton(
                   onPressed: (otpCode != null)
                       ? () {
                           context
@@ -246,30 +195,84 @@ class _OtpScreenState extends State<OtpScreen>
                               .verifyOtp(otpCode, context);
                         }
                       : null,
-                  child: const Text("ज़ारी रखे "),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(80.0)),
+                  padding: EdgeInsets.all(0.0),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Container(
+                      constraints:
+                          BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "CONTINUE",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              const SizedBox(height: 20),
+              // SizedBox(
+              //   height: 52, //height of button
+              //   width: 296, //width of button
+              //   child: ElevatedButton(
+              //     style: ElevatedButton.styleFrom(
+              //         primary: bcolor, //background color of button
+              //         //border width and color
+              //         elevation: 3, //elevation of button
+              //         shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(30),
+              //         ),
+              //         padding: const EdgeInsets.all(20)),
+              //     onFocusChange: (code) {
+              //       ElevatedButton.styleFrom(
+              //         primary: const Color.fromRGBO(121, 0, 135, 1),
+              //       );
+              //     },
+              //     onPressed: (otpCode != null)
+              //         ? () {
+              //             context
+              //                 .read<AuthProvider>()
+              //                 .verifyOtp(otpCode, context);
+              //           }
+              //         : null,
+              //     child: const Text(
+              //       " CONTINUE",
+              //       style: TextStyle(
+              //         fontSize: 8,
+              //         fontWeight: FontWeight.bold,
+              //         color: Color.fromARGB(255, 10, 70, 104),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              const SizedBox(height: 10),
               TextButton(
-                child: Text("कोड फिर से भेजें " + secondsRemaining.toString()),
+                child: Text(
+                  "RESEND CODE " + secondsRemaining.toString(),
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 10, 70, 104),
+                  ),
+                ),
                 onPressed: enableResend ? () => initState() : null,
-                // style: const TextStyle(
-                //     fontWeight: FontWeight.w300,
-                //     color: Color.fromRGBO(6, 7, 87, 1),
-                //     fontSize: 14,
-                //     // decoration: TextDecoration.underline,
-                //     fontFamily: 'Hind'),
               ),
-              const SizedBox(height: 42),
+              const SizedBox(height: 30),
               const Text(
-                "‘जारी रखें‘ बटन क्लिक करने से \n आप हमारी गोपनीयता नीति और शर्तों से सहमत करते हैं",
+                "BY CLICKING CONTINUE, YOU ARE AGREEING TO THE TERMS AND CONDITIONS",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: Color.fromRGBO(6, 7, 87, 1),
-                  fontSize: 11,
-                  // decoration: TextDecoration.underline,
-                  fontFamily: 'Hind',
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 10, 70, 104),
                 ),
               )
 
