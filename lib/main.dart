@@ -21,18 +21,24 @@ void main() async {
   final channel = Client.channel("messaging",id: "chattApp");
    
   await Firebase.initializeApp();
+  await channel.watch();
+
+
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
-      ],
-      child: const MyApp(),
-    ),
+    // MultiProvider(
+    //   providers: [
+    //     ChangeNotifierProvider(create: (_) => AuthProvider()),
+    //   ],
+    //   child: const MyApp(),
+    // ),
+     MyApp(client: Client,channel: channel),
   );
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key,required this.client , required this.channel}) : super(key: key);
+  final StreamChatClient client;
+  final Channel channel;
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -57,5 +63,8 @@ class _MyAppState extends State<MyApp> {
               ? Home()
               : const PreLogin()),
     );
+   
+ 
+    
   }
 }
