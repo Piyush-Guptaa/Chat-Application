@@ -1,3 +1,6 @@
+import 'dart:html';
+
+import 'package:chat_application/constaintapi.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/Authscreen/login_page.dart';
@@ -6,9 +9,16 @@ import 'theme.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth.dart';
 import 'screens/Authscreen/loading.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final Client = StreamChatClient(apiKey,logLevel: Level.INFO);
+  await Client.connectUser(User(id: "chatApp"), UserToken);
+  final channel = Client.channel("messaging",id: "chattApp");
+   
   await Firebase.initializeApp();
   runApp(
     MultiProvider(
