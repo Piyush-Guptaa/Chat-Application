@@ -15,30 +15,25 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final Client = StreamChatClient(apiKey,logLevel: Level.INFO);
-  await Client.connectUser(User(id: "chatApp"), UserToken);
-  final channel = Client.channel("messaging",id: "chattApp");
-   
+  WidgetsFlutterBinding.ensureInitialized(); 
   await Firebase.initializeApp();
-  await channel.watch();
+
 
 
   runApp(
-    // MultiProvider(
-    //   providers: [
-    //     ChangeNotifierProvider(create: (_) => AuthProvider()),
-    //   ],
-    //   child: const MyApp(),
-    // ),
-     MyApp(client: Client,channel: channel),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ],
+      child: const MyApp(),
+    ),
+
   );
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key,required this.client , required this.channel}) : super(key: key);
-  final StreamChatClient client;
-  final Channel channel;
+  const MyApp({Key? key}) : super(key: key);
+
 
   @override
   State<MyApp> createState() => _MyAppState();
