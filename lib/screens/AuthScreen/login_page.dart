@@ -224,10 +224,10 @@ class _AuthScreenState extends State<AuthScreen> {
             // const SizedBox(
             //   height: 20,
             // ),
-            // TextButton(
-            //   child: const Text("लॉगिन के बिना प्रवेश "),
-            //   onPressed: () => context.read<AuthProvider>().guestLogin(),
-            // ),
+            TextButton(
+              child: const Text("Login as Guest"),
+              onPressed: () => context.read<AuthProvider>().guestLogin(),
+            ),
           ]),
         ),
       ),

@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
   late final channel= client.channel("messaging", id: "flutterdevs");
   Future<void> initialize() async {
     
-    await client.connectUser(User(id: "tutorial-flutter"), UserToken);
+    await client.connectUser(User(id: "PiyushGupta"), UserToken);
     await channel.watch();
 
   }
