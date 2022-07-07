@@ -1,4 +1,3 @@
-import 'package:chat_application/Stream/translations.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -11,7 +10,7 @@ class ChannelListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(Translations.of(context)!.text("title")),
+          title: const Text('Chat App'),
         ),
         body: ChannelsBloc(
           child: ChannelListView(
